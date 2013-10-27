@@ -15,7 +15,10 @@
  */
 package com.intellij.plugins.haxe.openfl.entity;
 
+import com.intellij.psi.PsiPackage;
+import com.intellij.util.xml.Convert;
 import com.intellij.util.xml.GenericAttributeValue;
+import com.intellij.util.xml.PsiPackageConverter;
 import org.jetbrains.annotations.NotNull;
 
 public interface OpenFLMeta extends OpenFLAbstractCondition {
@@ -28,7 +31,8 @@ public interface OpenFLMeta extends OpenFLAbstractCondition {
   @NotNull
   GenericAttributeValue<String> getDescription();
   @NotNull
-  GenericAttributeValue<String> getPackageName();
+  @Convert(PsiPackageConverter.class)
+  GenericAttributeValue<PsiPackage> getPackage();
   @NotNull
   GenericAttributeValue<String> getTitle();
   @NotNull

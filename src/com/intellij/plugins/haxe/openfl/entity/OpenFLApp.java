@@ -16,6 +16,7 @@
 package com.intellij.plugins.haxe.openfl.entity;
 
 import com.intellij.openapi.paths.PathReference;
+import com.intellij.plugins.haxe.lang.psi.HaxeClass;
 import com.intellij.util.xml.Convert;
 import com.intellij.util.xml.GenericAttributeValue;
 import org.jetbrains.annotations.NotNull;
@@ -26,7 +27,8 @@ public interface OpenFLApp extends OpenFLAbstractCondition {
   @NotNull
   GenericAttributeValue<String> getInit();
   @NotNull
-  GenericAttributeValue<String> getMain();
+  @Convert(HaxeClassConverter.class)
+  GenericAttributeValue<HaxeClass> getMain();
   @NotNull
   GenericAttributeValue<PathReference> getPath();
   @NotNull
