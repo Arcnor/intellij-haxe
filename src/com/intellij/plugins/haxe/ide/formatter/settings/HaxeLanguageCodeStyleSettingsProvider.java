@@ -15,11 +15,14 @@
  */
 package com.intellij.plugins.haxe.ide.formatter.settings;
 
+import com.intellij.application.options.IndentOptionsEditor;
+import com.intellij.application.options.SmartIndentOptionsEditor;
 import com.intellij.lang.Language;
 import com.intellij.plugins.haxe.HaxeLanguage;
 import com.intellij.psi.codeStyle.CodeStyleSettingsCustomizable;
 import com.intellij.psi.codeStyle.LanguageCodeStyleSettingsProvider;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author: Fedor.Korotkov
@@ -41,6 +44,12 @@ public class HaxeLanguageCodeStyleSettingsProvider extends LanguageCodeStyleSett
       return WRAPPING_CODE_SAMPLE;
     }
     return BLANK_LINES_CODE_SAMPLE;
+  }
+
+  @Nullable
+  @Override
+  public IndentOptionsEditor getIndentOptionsEditor() {
+    return new SmartIndentOptionsEditor();
   }
 
   @Override
