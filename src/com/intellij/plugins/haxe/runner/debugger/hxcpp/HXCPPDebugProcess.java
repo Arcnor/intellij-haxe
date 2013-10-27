@@ -20,7 +20,6 @@ import com.intellij.execution.process.ProcessHandler;
 import com.intellij.execution.ui.ConsoleView;
 import com.intellij.execution.ui.ConsoleViewContentType;
 import com.intellij.execution.ui.ExecutionConsole;
-import com.intellij.idea.LoggerFactory;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.module.Module;
@@ -48,10 +47,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author: Fedor.Korotkov
+ * @author Fedor.Korotkov
  */
 public class HXCPPDebugProcess extends XDebugProcess implements SocketConnectionListener {
-  private static final Logger LOG = LoggerFactory.getInstance().getLoggerInstance(HXCPPDebugProcess.class.getName());
+  private static final Logger LOG = Logger.getInstance(HXCPPDebugProcess.class.getName());
   @Nullable private ExecutionResult myExecutionResult;
   private final HXCPPConnection myConnection = new HXCPPConnection();
   private final HXCPPBreakpointsHandler myBreakpointsHandler;
@@ -89,7 +88,7 @@ public class HXCPPDebugProcess extends XDebugProcess implements SocketConnection
       }
     };
 
-  public void setExecutionResult(ExecutionResult executionResult) {
+  public void setExecutionResult(@Nullable ExecutionResult executionResult) {
     if (executionResult instanceof HXCPPRemoteDebugState.HXCPPRemoteDebugProcessHandler) {
       ((HXCPPRemoteDebugState.HXCPPRemoteDebugProcessHandler)executionResult).setRemoteDebugProcess(this);
     }

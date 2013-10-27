@@ -25,7 +25,7 @@ import com.intellij.plugins.haxe.lang.psi.HaxeNamedComponent;
 import com.intellij.plugins.haxe.util.HaxeResolveUtil;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.search.GlobalSearchScope;
-import com.intellij.psi.search.searches.DefinitionsSearch;
+import com.intellij.psi.search.searches.DefinitionsScopedSearch;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.Processor;
 import com.intellij.util.QueryExecutor;
@@ -44,7 +44,7 @@ import java.util.Set;
 public class HaxeInheritanceDefinitionsSearchExecutor implements QueryExecutor<PsiElement, PsiElement> {
   public static List<HaxeClass> getItemsByQName(final HaxeClass haxeClass) {
     final List<HaxeClass> result = new ArrayList<HaxeClass>();
-    DefinitionsSearch.search(haxeClass).forEach(new Processor<PsiElement>() {
+    DefinitionsScopedSearch.search(haxeClass).forEach(new Processor<PsiElement>() {
       @Override
       public boolean process(PsiElement element) {
         if (element instanceof HaxeClass) {

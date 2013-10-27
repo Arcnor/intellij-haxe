@@ -15,7 +15,6 @@
  */
 package com.intellij.plugins.haxe.runner.debugger.hxcpp.connection;
 
-import com.intellij.idea.LoggerFactory;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.util.io.socketConnection.AbstractRequest;
 
@@ -23,7 +22,7 @@ import java.io.IOException;
 import java.io.Writer;
 
 public class HXCPPCommand implements AbstractRequest {
-  private static final Logger LOG = LoggerFactory.getInstance().getLoggerInstance(HXCPPCommand.class.getName());
+  private static final Logger LOG = Logger.getInstance(HXCPPCommand.class.getName());
   private final String[] myArgs;
   private final int myId;
 

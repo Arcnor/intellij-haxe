@@ -28,6 +28,7 @@ import com.intellij.xdebugger.breakpoints.XLineBreakpointType;
 import com.intellij.xdebugger.breakpoints.ui.XBreakpointGroupingRule;
 import com.intellij.xdebugger.evaluation.XDebuggerEditorsProvider;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,8 +67,9 @@ public class HaxeBreakpointType extends XLineBreakpointType<XBreakpointPropertie
     return rules;
   }
 
+  @Nullable
   @Override
-  public XDebuggerEditorsProvider getEditorsProvider() {
+  public XDebuggerEditorsProvider getEditorsProvider(@NotNull XLineBreakpoint<XBreakpointProperties> breakpoint, @NotNull Project project) {
     return myEditorProvider;
   }
 

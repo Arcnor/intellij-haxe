@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/intellij-haxe.iml" filepath="$PROJECT_DIR$/intellij-haxe.iml" />
       <module fileurl="file://$PROJECT_DIR$/jps-plugin/jps-plugin.iml" filepath="$PROJECT_DIR$/jps-plugin/jps-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openfl-plugin/openfl-plugin.iml" filepath="$PROJECT_DIR$/openfl-plugin/openfl-plugin.iml" />
     </modules>
   </component>
 </project>
