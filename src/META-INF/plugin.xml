@@ -164,7 +164,7 @@
       </ul>
       ]]>
   </change-notes>
-  <version>0.6.9</version>
+  <version>0.7.1</version>
   <vendor>JetBrains</vendor>
   <idea-version since-build="132.1"/>
   <depends>com.intellij.modules.java</depends><!-- Rich platform which contains compiler abstraction -->
@@ -297,6 +297,14 @@
                      key="haxe.inspection.unresolved.symbol"
                      groupKey="inspections.group.name" enabledByDefault="true"
                      implementationClass="com.intellij.plugins.haxe.ide.inspections.HaxeUnresolvedSymbolInspection"/>
+
+    <!--OpenFL-->
+    <dom.fileDescription implementation="com.intellij.plugins.haxe.openfl.OpenFLProjectDomFileDescription"/>
+    <localInspection language="XML" shortName="OpenFLProjectModelInspection" bundle="com.intellij.plugins.haxe.openfl.OpenFLBundle"
+                     key="inspection.name" groupKey="inspection.group"
+                     enabledByDefault="true" level="ERROR"
+                     implementationClass="com.intellij.plugins.haxe.openfl.OpenFLProjectDomElementsInspection"/>
+    <documentationProvider implementation="com.intellij.plugins.haxe.openfl.OpenFLProjectDocProvider"/>
   </extensions>
 
   <actions>

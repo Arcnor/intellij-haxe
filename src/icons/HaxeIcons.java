@@ -34,4 +34,5 @@ public class HaxeIcons {
   public static final Icon Haxe_24 = load("/icons/haXe_24.png"); // 24x24
   public static final Icon I_Haxe = load("/icons/I_haXe.png"); // 16x16
   public static final Icon Nmml_16 = load("/icons/nmml_16.png"); // 16x16
+  public static final Icon OpenFL_16 = load("/icons/openfl_16.png"); // 16x16
 }
