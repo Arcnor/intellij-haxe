@@ -19,6 +19,13 @@
   <description>Support for Haxe programming language</description>
   <change-notes>
     <![CDATA[
+      <p>0.7.0:</p>
+      <ul>
+        <li>133.XXX compatible</li>
+        <li>Some fixes for indenting issues (HAXE-354)</li>
+        <li>Initial support for OpenFL project.xml handling</li>
+        <li>Added "Tabs and Indents" configuration tab</li>
+      </ul>
       <p>0.6.9:</p>
       <ul>
         <li>Neko target for OpenFL</li>
