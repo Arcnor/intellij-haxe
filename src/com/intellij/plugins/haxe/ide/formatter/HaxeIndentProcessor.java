@@ -84,10 +84,8 @@ public class HaxeIndentProcessor {
       }
       return Indent.getNormalIndent();
     }
-    if (FUNCTION_DEFINITION.contains(parentType) || parentType == CALL_EXPRESSION) {
-      if (elementType == PARAMETER_LIST || elementType == EXPRESSION_LIST) {
-        return Indent.getNormalIndent();
-      }
+    if (parentType == EXPRESSION_LIST && elementType == LITERAL_EXPRESSION || elementType == EXPRESSION_LIST) {
+      return Indent.getContinuationWithoutFirstIndent();
     }
     if (parentType == FOR_STATEMENT && prevSiblingType == PRPAREN && elementType != BLOCK_STATEMENT) {
       return Indent.getNormalIndent();

@@ -21,6 +21,7 @@ import com.intellij.lang.ASTNode;
 import com.intellij.plugins.haxe.HaxeLanguage;
 import com.intellij.plugins.haxe.ide.formatter.settings.HaxeCodeStyleSettings;
 import com.intellij.plugins.haxe.lang.lexer.HaxeTokenTypes;
+import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiWhiteSpace;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import com.intellij.psi.formatter.FormatterUtil;
@@ -99,7 +100,8 @@ public class HaxeBlock extends AbstractBlock implements BlockWithParent {
 
   @Nullable
   protected Alignment createChildAlignment(ASTNode child) {
-    if (child.getElementType() != HaxeTokenTypes.PLPAREN && child.getElementType() != HaxeTokenTypes.BLOCK_STATEMENT) {
+    final IElementType elementType = child.getElementType();
+    if (elementType != HaxeTokenTypes.PLPAREN && elementType != HaxeTokenTypes.BLOCK_STATEMENT) {
       return myAlignmentProcessor.createChildAlignment();
     }
     return null;
@@ -117,7 +119,7 @@ public class HaxeBlock extends AbstractBlock implements BlockWithParent {
       prev = (ASTBlock)getSubBlocks().get(index - 1);
       index--;
     }
-    while (prev.getNode().getElementType() == HaxeTokenTypes.OSEMI || prev.getNode() instanceof PsiWhiteSpace);
+    while (prev.getNode().getElementType() == HaxeTokenTypes.OSEMI || prev.getNode() instanceof PsiWhiteSpace || prev.getNode() instanceof PsiComment);
 
     final IElementType elementType = myNode.getElementType();
     final IElementType prevType = prev == null ? null : prev.getNode().getElementType();
@@ -128,7 +130,10 @@ public class HaxeBlock extends AbstractBlock implements BlockWithParent {
       return new ChildAttributes(Indent.getNormalIndent(), null);
     }
     if (index == 0) {
-      return new ChildAttributes(Indent.getNoneIndent(), null);
+      return new ChildAttributes(Indent.getNormalIndent(), null);
+    }
+    if (isStartsWithLOPEN(elementType, prevType) || isEndClass(elementType, prevType)) {
+      return new ChildAttributes(Indent.getNormalIndent(), null);
     }
     return new ChildAttributes(prev.getIndent(), prev.getAlignment());
   }
@@ -153,5 +158,13 @@ public class HaxeBlock extends AbstractBlock implements BlockWithParent {
            (elementType == HaxeTokenTypes.IF_STATEMENT ||
             elementType == HaxeTokenTypes.FOR_STATEMENT ||
             elementType == HaxeTokenTypes.WHILE_STATEMENT);
+  }
+
+  private static boolean isStartsWithLOPEN(IElementType elementType, IElementType prevType) {
+    return prevType == HaxeTokenTypes.PLCURLY || prevType == HaxeTokenTypes.PLBRACK || prevType == HaxeTokenTypes.PLPAREN;
+  }
+
+  private static boolean isEndClass(IElementType elementType, IElementType prevType) {
+    return elementType == HaxeTokenTypes.CLASS_DECLARATION && prevType == HaxeTokenTypes.CLASS_BODY;
   }
 }
